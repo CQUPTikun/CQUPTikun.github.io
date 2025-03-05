@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}管理员控制面板{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center">欢迎, {{ current_user.username }} (管理员)</h2>
+
+    <div class="card mt-4">
+        <div class="card-header bg-primary text-white">
+            <h5>用户管理</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>用户名</th>
+                        <th>管理员</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{% if user.is_admin %}✅ 是{% else %}❌ 否{% endif %}</td>
+                        <td>
+                            {% if not user.is_admin %}
+                                <a href="{{ url_for('main.delete_user', user_id=user.id) }}" class="btn btn-danger btn-sm"
+                                   onclick="return confirm('确定要删除此用户吗？');">删除</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{{ url_for('main.index') }}" class="btn btn-secondary">返回主页</a>
+        <a href="{{ url_for('main.logout') }}" class="btn btn-danger">退出登录</a>
+    </div>
+</div>
+{% endblock %}

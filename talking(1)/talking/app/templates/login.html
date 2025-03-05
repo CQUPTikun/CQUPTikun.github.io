@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}登录{% endblock %}
+
+{% block content %}
+<div class="card mx-auto mt-4 shadow" style="max-width: 400px;">
+    <div class="card-body">
+        <h2 class="text-center">登录</h2>
+        <form method="POST">
+            <div class="mb-3">
+                <label class="form-label">用户名</label>
+                <input type="text" class="form-control" name="username" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">密码</label>
+                <input type="password" class="form-control" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">登录</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

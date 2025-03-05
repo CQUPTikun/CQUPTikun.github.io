@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block content %}
+<h1 class="text-center">{{ post.title }}</h1>
+<p class="text-muted">{{ post.content }}</p>
+<hr>
+<h3>评论</h3>
+{% for comment in comments %}
+    <div class="border p-2 mb-2 rounded shadow-sm">
+        <p>{{ comment.content }}</p>
+    </div>
+{% endfor %}
+{% if current_user.is_authenticated %}
+<form method="POST" class="mt-3">
+    <div class="mb-3">
+        <label class="form-label">添加评论</label>
+        <textarea class="form-control" name="content" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">提交评论</button>
+</form>
+{% else %}
+    <p class="text-center">请 <a href="{{ url_for('main.login') }}">登录</a> 以添加评论。</p>
+{% endif %}
+{% endblock %}

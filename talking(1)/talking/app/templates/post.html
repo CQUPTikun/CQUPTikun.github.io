@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}发布帖子{% endblock %}
+{% block content %}
+<div class="card mx-auto mt-4 shadow" style="max-width: 600px;">
+    <div class="card-body">
+        <h2 class="text-center">发布帖子</h2>
+        <form method="POST">
+            <div class="mb-3">
+                <label class="form-label">标题</label>
+                <input type="text" class="form-control" name="title" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">内容</label>
+                <textarea class="form-control" name="content" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-success w-100">发布</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
